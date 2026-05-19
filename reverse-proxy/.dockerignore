@@ -1,0 +1,3 @@
+﻿# Build context for the reverse proxy only needs the Dockerfile and Nginx config.
+.git
+.DS_Store

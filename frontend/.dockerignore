@@ -1,0 +1,3 @@
+﻿# Nothing in this directory needs build-time dependencies.
+.git
+.DS_Store

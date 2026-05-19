@@ -1,0 +1,10 @@
+﻿# Runtime environment file. Keep real secrets out of git.
+.env
+
+# Node dependencies installed during local development.
+api/node_modules/
+
+# OS/editor noise.
+.DS_Store
+Thumbs.db
+.vscode/

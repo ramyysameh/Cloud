@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CloudPaste</title>
+    <meta name="description" content="Self-hosted note and code snippet sharing.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="CloudPaste home">
+        <span class="brand-mark">CP</span>
+        <span>
+          <strong>CloudPaste</strong>
+          <small>self-hosted paste sharing</small>
+        </span>
+      </a>
+    </header>
+
+    <main class="shell">
+      <section id="app" class="panel" aria-live="polite"></section>
+    </main>
+
+    <template id="create-template">
+      <div class="panel-heading">
+        <p class="eyebrow">Create paste</p>
+        <h1>Share notes, code, logs, or configs.</h1>
+        <p class="muted">Create a paste, get a private link, optionally add a password and expiry.</p>
+      </div>
+
+      <form id="create-form" class="paste-form">
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="Paste text or code here..." required></textarea>
+
+        <div class="form-grid">
+          <label>
+            Language
+            <select id="language" name="language">
+              <option value="plaintext">Plain text</option>
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="bash">Bash</option>
+              <option value="json">JSON</option>
+              <option value="html">HTML</option>
+              <option value="css">CSS</option>
+              <option value="sql">SQL</option>
+              <option value="yaml">YAML</option>
+            </select>
+          </label>
+
+          <label>
+            Expiry
+            <select id="expiry" name="expiry">
+              <option value="never">Never</option>
+              <option value="1h">1 hour</option>
+              <option value="6h">6 hours</option>
+              <option value="1d">1 day</option>
+              <option value="7d">7 days</option>
+              <option value="30d">30 days</option>
+            </select>
+          </label>
+        </div>
+
+        <label for="password">Optional password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Leave blank for public link">
+
+        <div id="message" class="message" role="status"></div>
+        <button type="submit" class="primary-button">Create paste</button>
+      </form>
+    </template>
+
+    <template id="view-template">
+      <div class="paste-toolbar">
+        <div>
+          <p class="eyebrow">Paste</p>
+          <h1 id="paste-id">Loading...</h1>
+        </div>
+        <div class="toolbar-actions">
+          <button id="copy-link" class="secondary-button" type="button">Copy link</button>
+          <a class="secondary-button" href="/">New paste</a>
+        </div>
+      </div>
+
+      <div id="message" class="message" role="status"></div>
+      <div id="password-card" class="password-card hidden">
+        <label for="view-password">This paste is password-protected.</label>
+        <div class="password-row">
+          <input id="view-password" type="password" autocomplete="current-password" placeholder="Enter password">
+          <button id="unlock" class="primary-button" type="button">Unlock</button>
+        </div>
+      </div>
+
+      <div id="paste-meta" class="paste-meta"></div>
+      <pre id="code-wrap" class="code-wrap hidden"><code id="paste-content"></code></pre>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
