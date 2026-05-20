@@ -78,8 +78,6 @@ networks:
   pastenet:
     name: pastenet
     driver: bridge
-  # Docker bridge networks do not support per-service ACLs. Keeping the database
-  # off pastenet and on this internal API-only bridge is what enforces DB isolation.
   dbnet:
     name: cloudpaste_dbnet
     driver: bridge
